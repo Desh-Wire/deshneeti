@@ -164,7 +164,8 @@ const Navbar = () => {
                                             {language}
                                         </DropdownMenuItem>
                                     ))}
-
+                                    {/* Divider */}
+                                    <div className="border-b border-gray-300 my-2" />
                                     {/* Menu Items */}
                                     {[...MENUITEMS, ...OTHERITEMS].map((item, index) => (
                                         <DropdownMenuItem
