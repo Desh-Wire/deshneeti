@@ -200,7 +200,7 @@ const Navbar = () => {
                                         key={index}
                                         onClick={() => router.push(item.path)}
                                         className={cn(
-                                            "cursor-pointer text-base md:text-lg font-medium transition-colors duration-200 ease-in-out hover:font-semibold text-gray-700",
+                                            "cursor-pointer text-base md:text-lg font-medium transition-colors duration-200 ease-in-out hover:font-semibold text-gray-700 py-2",
                                             pathName === item.path
                                                 ? "font-semibold border-b-4 border-[#9C1818]"
                                                 : "text-gray-700"
