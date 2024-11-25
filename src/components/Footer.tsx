@@ -14,7 +14,7 @@ const Footer = () => {
         <footer className="bg-[#1c1d1a]">
             <MaxWidthWrapper>
                 {/* Top Level Div */}
-                <div className="flex flex-col items-center justify-between gap-y-10 my-4">
+                <div className="flex flex-col items-center justify-between gap-y-10 mt-4 mb-8">
                     {/* Logo & Social Media */}
                     <div className="flex flex-row items-center justify-between w-full">
                         <Image
