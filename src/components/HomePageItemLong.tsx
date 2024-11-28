@@ -31,7 +31,7 @@ const HomePageItemLong = ({ heading, category, readtime, author, image, router }
                     {heading}
                 </p>
                 <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque, adipisci?
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab repellat nisi molestiae explicabo ea ipsum praesentium rem sequi temporibus neque? Aliquam minima quam repellendus numquam nesciunt vitae sit magni porro.
                 </p>
                 <div className='flex flex-row justify-between items-center'>
                     <p className="text-sm tracking-tight">

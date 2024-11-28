@@ -1,10 +1,11 @@
-import React from 'react'
+
 import { EXAMPLES } from '@/lib/example'
 import HomePageItemSmall from './HomePageItemSmall';
 import JustInItem from './JustInItem';
 import HomePageItemBig from './HomePageItemBig';
 import HomePageItemLong from './HomePageItemLong';
-import { Radio } from 'lucide-react';
+import { Clock, Radio } from 'lucide-react';
+import { MyClock } from './Clock';
 import Divider from './Divider';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
@@ -18,16 +19,21 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
     return (
         <>
             {/* Top level div */}
-            <div className='flex flex-row justify-between my-8'>
+            <div className='flex flex-row justify-between gap-x-4 my-8'>
                 {/* Editors Pick */}
-                <div className='w-[25%] flex flex-col gap-y-2'>
-                    <p className='font-extrabold text-lg capitalize'>
-                        EDITOR'S PICK
-                    </p>
-                    {/* Divider */}
-                    <Divider />
+                <div className='w-[25%] flex flex-col justify-between'>
+                    <div className='flex flex-col gap-y-4'>
+                        <p className='font-extrabold text-2xl capitalize'>
+                            EDITOR'S PICK
+                        </p>
+                        <div className='w-full h-[50px] bg-[#ece2c8] flex flex-row items-center justify-between rounded-md px-10 border-red-600 border '>
+                            <Clock className='text-lg font-bold'/>
+                            <MyClock/>
+                        </div>
+                        <Divider/>
+                    </div>
                     {/* Items */}
-                    <div className='flex flex-col gap-y-2'>
+                    <div className='flex flex-col gap-y-2 justify-between'>
                         {
                             editorsPick.map((item, index) => (
                                 <div className='flex flex-col gap-y-2' key={index}>
@@ -43,30 +49,33 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                     <div className='w-full h-[60%]'>
                         <HomePageItemBig heading={center[0].Title} category={center[0].Category} readtime={center[0].ReadTime.toString()} author={center[0].Author} image={center[0].ImagePath} router={router} />
                     </div>
-                    <Divider/>
+                    <Divider />
                     <div className='h-[40%] w-full flex flex-col gap-y-2'>
                         {
                             centerBelow.map((item, index) => (
                                 <div className='flex flex-col gap-y-2' key={index}>
-                                    <HomePageItemLong  heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} />
-                                    <Divider/>
+                                    <HomePageItemLong heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} />
+                                    <Divider />
                                 </div>
                             ))
                         }
                     </div>
                 </div>
                 {/* Just in */}
-                <div className='flex flex-col items-center'>
-                    <div className='flex flex-row items-center gap-x-2'>
-                        <Radio className='text-sm text-red-600' />
-                        <p className='font-extrabold text-lg capitalize'>
+                <div className='flex flex-col items-center gap-y-2 w-[20%]'>
+                    <div className='flex flex-row items-center gap-x-2 w-full'>
+                        <Radio className='text-lg text-red-600' />
+                        <p className='font-extrabold text-2xl capitalize'>
                             JUST IN
                         </p>
                     </div>
-                    <div>
+                    <div className='w-full flex flex-col gap-y-2'>
                         {
                             justIn.map((item, index) => (
-                                <JustInItem key={index} category={item.Category} title={item.Title} />
+                                <div key={index} className='flex flex-col gap-y-2'>
+                                    <JustInItem key={index} category={item.Category} title={item.Title} router={router}/>
+                                    <Divider />
+                                </div>
                             ))
                         }
                     </div>

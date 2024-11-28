@@ -21,8 +21,8 @@ const HomePageItemBig = ({ heading, category, readtime, author, image, router }:
     }
 
     return (
-        <div className="flex flex-col justify-between gap-y-4 bg-[#ece2c8] pt-4 w-full">
-            <div className="flex flex-col justify-between gap-y-2 m-4">
+        <div className="flex flex-col gap-y-2 bg-[#ece2c8] pt-4 w-full">
+            <div className="flex flex-col justify-between gap-y-4 mx-4">
                 <p className='font-bold uppercase tracking-wider text-red-700 cursor-pointer hover:text-black' onClick={() => handeCategoryClick(category.toLowerCase())}>
                     {category}
                 </p>
@@ -41,7 +41,7 @@ const HomePageItemBig = ({ heading, category, readtime, author, image, router }:
             <img
                 src={image}
                 alt={heading}
-                className='w-full h-[560px] object-cover cursor-pointer hover:scale-105 transition-transform'
+                className='w-full h-[460px] object-cover cursor-pointer hover:scale-105 transition-transform'
                 onClick={() => handleNewsClick(heading.toLowerCase())}
             />
         </div>
