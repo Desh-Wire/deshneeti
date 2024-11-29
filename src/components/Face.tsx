@@ -19,7 +19,7 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
     return (
         <>
             {/* Top level div */}
-            <div className='flex flex-row justify-between gap-x-4 my-8'>
+            <div className='flex flex-row justify-between gap-x-4'>
                 {/* Editors Pick */}
                 <div className='w-[25%] flex flex-col justify-between'>
                     <div className='flex flex-col gap-y-4'>
