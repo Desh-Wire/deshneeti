@@ -22,11 +22,11 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
             <div className='flex flex-row justify-between gap-x-4'>
                 {/* Editors Pick */}
                 <div className='w-[25%] flex flex-col justify-between'>
-                    <div className='flex flex-col gap-y-4'>
+                    <div className='flex flex-col gap-y-8'>
                         <p className='font-extrabold text-2xl capitalize'>
                             EDITOR'S PICK
                         </p>
-                        <div className='w-full h-[50px] bg-[#ece2c8] flex flex-row items-center justify-between rounded-md px-10 border-red-600 border '>
+                        <div className='w-full py-4 bg-[#ece2c8] flex flex-row items-center justify-between rounded-md px-10  border-red-600 border '>
                             <Clock className='text-lg font-bold'/>
                             <MyClock/>
                         </div>

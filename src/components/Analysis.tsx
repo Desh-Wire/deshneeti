@@ -5,7 +5,7 @@ import HomePageItemSmall2 from './HomePageItemSmall2'
 import HomePageItemLong2 from './HomePageItemLong2'
 import ViewMore from './ViewMore'
 
-const HotTopic = ({ heading,className,router }: { heading: string,className?:string,router: AppRouterInstance}) => {
+const Analysis = ({ className,router }: { className?:string,router: AppRouterInstance}) => {
 
     //random 2
     const horizontalNews = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 2);
@@ -18,7 +18,7 @@ const HotTopic = ({ heading,className,router }: { heading: string,className?:str
             {/* Heading and view more div */}
             <div className='flex flex-row justify-between items-center'>
                 <h1 className='text-4xl font-extrabold'>
-                    {heading}
+                    Analysis
                 </h1>
                 <ViewMore black={true}/>
             </div>
@@ -48,4 +48,4 @@ const HotTopic = ({ heading,className,router }: { heading: string,className?:str
     )
 }
 
-export default HotTopic
+export default Analysis
