@@ -6,6 +6,8 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { useRouter } from "next/navigation";
 import VideoSection from "@/components/VideoSection";
 import Analysis from "@/components/Analysis";
+import HomePageGrid from "@/components/HomePageGrid";
+import Divider from "@/components/Divider";
 
 
 export default function Home() {
@@ -20,7 +22,11 @@ export default function Home() {
       </MaxWidthWrapper>
       <VideoSection router={router} />
       <MaxWidthWrapper>
-        <Analysis router={router} className="my-14"/>
+        <Analysis router={router} className="my-14" />
+      </MaxWidthWrapper>
+      <Divider />
+      <MaxWidthWrapper>
+        <HomePageGrid router={router} className="my-14" />
       </MaxWidthWrapper>
     </div>
   );

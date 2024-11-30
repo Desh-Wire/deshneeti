@@ -21,12 +21,12 @@ const HomePageItemLong2 = ({ heading, category, readtime, author, image, router 
     }
 
     return (
-        <div className="flex flex-row justify-between gap-x-1">
+        <div className="flex flex-row gap-x-4">
 
             <img
                 src={image}
                 alt={heading}
-                className='h-44 aspect-square object-cover cursor-pointer hover:scale-105 transition-transform'
+                className='h-32 aspect-square object-cover cursor-pointer hover:scale-105 transition-transform'
                 onClick={() => handleNewsClick(heading.toLowerCase())}
             />
 
