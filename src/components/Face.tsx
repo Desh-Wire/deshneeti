@@ -37,7 +37,7 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                         {
                             editorsPick.map((item, index) => (
                                 <div className='flex flex-col gap-y-2' key={index}>
-                                    <HomePageItemSmall heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} />
+                                    <HomePageItemSmall heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} uuid={item.uuid} />
                                     <Divider />
                                 </div>
                             ))
@@ -47,14 +47,14 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                 {/* Center div */}
                 <div className='flex flex-col h-full items-center w-[60%]'>
                     <div className='w-full h-[60%]'>
-                        <HomePageItemBig heading={center[0].Title} category={center[0].Category} readtime={center[0].ReadTime.toString()} author={center[0].Author} image={center[0].ImagePath} router={router} />
+                        <HomePageItemBig heading={center[0].Title} category={center[0].Category} readtime={center[0].ReadTime.toString()} author={center[0].Author} image={center[0].ImagePath} router={router} uuid={center[0].uuid}/>
                     </div>
                     <Divider />
                     <div className='h-[40%] w-full flex flex-col gap-y-2'>
                         {
                             centerBelow.map((item, index) => (
                                 <div className='flex flex-col gap-y-2' key={index}>
-                                    <HomePageItemLong heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} />
+                                    <HomePageItemLong heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} uuid={item.uuid} />
                                     <Divider />
                                 </div>
                             ))
@@ -73,7 +73,7 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                         {
                             justIn.map((item, index) => (
                                 <div key={index} className='flex flex-col gap-y-2'>
-                                    <JustInItem key={index} category={item.Category} title={item.Title} router={router}/>
+                                    <JustInItem key={index} category={item.Category} title={item.Title} router={router} uuid={item.uuid}/>
                                     <Divider />
                                 </div>
                             ))

@@ -2,8 +2,6 @@ import { cn } from '@/lib/utils'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { EXAMPLES } from '@/lib/example'
 import AuthorItem from './AuthorItemHomePage';
-import Divider from './Divider';
-import ViewMore from './ViewMore';
 
 const OpinionsBoxHomePage = ({ className, router }: { className?: string, router: AppRouterInstance }) => {
 
@@ -19,7 +17,7 @@ const OpinionsBoxHomePage = ({ className, router }: { className?: string, router
                 {
                     opinions.map((item, index) => (
                         <div key={index} className='flex flex-col gap-y-2'>
-                            <AuthorItem key={index} author={item.Author} title={item.Title} router={router} />
+                            <AuthorItem key={index} author={item.Author} title={item.Title} router={router} uuid={item.uuid} />
                             <div className='w-full h-[4px] bg-[#ddcea9]' />
                         </div>
                     ))

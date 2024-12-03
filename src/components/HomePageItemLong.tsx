@@ -9,15 +9,16 @@ type HomePageItemProps = {
     author: string
     image: string
     router: AppRouterInstance
+    uuid: string
 }
 
-const HomePageItemLong = ({ heading, category, readtime, author, image, router }: HomePageItemProps) => {
+const HomePageItemLong = ({ heading, category, readtime, author, image, router,uuid }: HomePageItemProps) => {
     const handeCategoryClick = (category: string) => {
         router.push(`/category/${category}`)
     }
 
     const handleNewsClick = (heading: string) => {
-        router.push(`/news/${heading}`)
+        router.push(`/news/${uuid}`)
     }
 
     return (
@@ -27,7 +28,7 @@ const HomePageItemLong = ({ heading, category, readtime, author, image, router }
                 <p className='font-bold uppercase tracking-wider text-red-700 cursor-pointer hover:text-black' onClick={() => handeCategoryClick(category.toLowerCase())}>
                     {category}
                 </p>
-                <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(heading.toLowerCase())}>
+                <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(uuid)}>
                     {heading}
                 </p>
                 <p>
@@ -46,7 +47,7 @@ const HomePageItemLong = ({ heading, category, readtime, author, image, router }
                 src={image}
                 alt={heading}
                 className='w-60 object-cover cursor-pointer hover:scale-105 transition-transform'
-                onClick={() => handleNewsClick(heading.toLowerCase())}
+                onClick={() => handleNewsClick(uuid)}
             />
         </div>
     )

@@ -12,17 +12,18 @@ type HomePageItemProps = {
     image: string
     router: AppRouterInstance
     video?: boolean
+    uuid: string
 }
 
 
-const HomePageItemSmall = ({ heading, category, readtime, author, image, router,video }: HomePageItemProps) => {
+const HomePageItemSmall = ({ heading, category, readtime, author, image, router,video,uuid }: HomePageItemProps) => {
 
     const handeCategoryClick = (category: string) => {
         router.push(`/category/${category}`)
     }
 
-    const handleNewsClick = (heading: string) => {
-        router.push(`/news/${heading}`)
+    const handleNewsClick = (uuid: string) => {
+        router.push(`/news/${uuid}`)
     }
 
     return (
@@ -32,7 +33,7 @@ const HomePageItemSmall = ({ heading, category, readtime, author, image, router,
                     src={image}
                     alt={heading}
                     className='w-full h-[250px] object-cover cursor-pointer hover:scale-105 transition-transform'
-                    onClick={() => handleNewsClick(heading.toLowerCase())}
+                    onClick={() => handleNewsClick(uuid)}
                 />
                 {
                     // show a video symbol in the middle of the image
@@ -48,7 +49,7 @@ const HomePageItemSmall = ({ heading, category, readtime, author, image, router,
                 <p className='font-bold uppercase tracking-wider text-red-700 cursor-pointer hover:text-black' onClick={() => handeCategoryClick(category.toLowerCase())}>
                     {category}
                 </p>
-                <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(heading.toLowerCase())}>
+                <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(uuid)}>
                     {heading}
                 </p>
                 <div className='flex flex-row justify-between items-center'>

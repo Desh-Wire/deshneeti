@@ -4,15 +4,16 @@ type JustInItemProps = {
     category: string
     title: string
     router: AppRouterInstance
+    uuid: string
 }
 
-const JustInItem = ({ category, title, router }: JustInItemProps) => {
+const JustInItem = ({ category, title, router,uuid }: JustInItemProps) => {
     const handeCategoryClick = (category: string) => {
         router.push(`/category/${category}`)
     }
 
-    const handleNewsClick = (heading: string) => {
-        router.push(`/news/${heading}`)
+    const handleNewsClick = (uuid: string) => {
+        router.push(`/news/${uuid}`)
     }
 
     return (
@@ -20,7 +21,7 @@ const JustInItem = ({ category, title, router }: JustInItemProps) => {
             <p className='font-bold uppercase tracking-wider text-red-700 cursor-pointer hover:text-black' onClick={() => handeCategoryClick(category.toLowerCase())}>
                 {category}
             </p>
-            <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(title.toLowerCase())}>
+            <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(uuid)}>
                 {title}
             </p>
         </div>

@@ -11,6 +11,7 @@ const HomePageGridItem = ({ router, heading, news }: {
         Author: string;
         ReadTime: number;
         CreatedAt: string;
+        uuid: string;
     }[]
 }) => {
 
@@ -18,8 +19,8 @@ const HomePageGridItem = ({ router, heading, news }: {
         router.push(`/category/${category}`)
     }
 
-    const handleNewsClick = (heading: string) => {
-        router.push(`/news/${heading}`)
+    const handleNewsClick = (uuid: string) => {
+        router.push(`/news/${uuid}`)
     }
 
     return (
@@ -29,7 +30,7 @@ const HomePageGridItem = ({ router, heading, news }: {
             </h1>
             <div className='flex flex-col gap-y-4'>
                 {/* only first news */}
-                <HomePageItemSmall heading={news[0].Title} category={news[0].Category} readtime={news[0].ReadTime.toString()} author={news[0].Author} image={news[0].ImagePath} router={router} />
+                <HomePageItemSmall heading={news[0].Title} category={news[0].Category} readtime={news[0].ReadTime.toString()} author={news[0].Author} image={news[0].ImagePath} router={router} uuid={news[0].uuid}/>
                 {/* rest */}
                 {
                     news.slice(1).map((item, index) => (
@@ -37,7 +38,7 @@ const HomePageGridItem = ({ router, heading, news }: {
                             <p className='font-bold uppercase tracking-wider text-red-700 cursor-pointer hover:text-black' onClick={() => handeCategoryClick(item.Category.toLowerCase())}>
                                 {item.Category}
                             </p>
-                            <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(item.Title.toLowerCase())}>
+                            <p className='font-semibold cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(item.uuid)}>
                                 {item.Title}
                             </p>
                             <div className='flex flex-row justify-between items-center'>

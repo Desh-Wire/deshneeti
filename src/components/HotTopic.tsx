@@ -31,7 +31,7 @@ const HotTopic = ({ heading,className,router }: { heading: string,className?:str
                 <div className='flex flex-row w-[70%] gap-4 items-stretch justify-items-stretch'>
                     {
                         horizontalNews.map((item,index) => (
-                            <HomePageItemSmall2 key={index} heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} />
+                            <HomePageItemSmall2 key={index} heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} uuid={item.uuid}/>
                         ))
                     }
                 </div>
@@ -39,7 +39,7 @@ const HotTopic = ({ heading,className,router }: { heading: string,className?:str
                 <div className='flex flex-col w-[30%] gap-4 justify-between'>
                     {
                         verticalNews.map((item,index) => (
-                            <HomePageItemLong2 key={index} heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} />
+                            <HomePageItemLong2 key={index} heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} uuid={item.uuid}/>
                         ))
                     }
                 </div>

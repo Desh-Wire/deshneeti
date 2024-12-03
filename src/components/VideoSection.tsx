@@ -34,7 +34,7 @@ const VideoSection = ({ router }: { router: AppRouterInstance }) => {
                 <div className="flex flex-row items-stretch justify-items-stretch gap-4">
                     {
                         videos.map((video, index) => (
-                            <HomePageItemSmall key={index} heading={video.Title} category={video.Category} readtime={video.ReadTime.toString()} author={video.Author} image={video.ImagePath} video={true} router={router} />
+                            <HomePageItemSmall key={index} heading={video.Title} category={video.Category} readtime={video.ReadTime.toString()} author={video.Author} image={video.ImagePath} video={true} router={router} uuid={video.uuid} />
                         ))
                     }
                 </div>
