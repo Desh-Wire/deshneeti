@@ -67,7 +67,7 @@ const page = () => {
             </div>
 
             {/* content */}
-            <div className='flex flex-col gap-y-4 p-4'>
+            <div className='flex flex-col gap-y-4 pr-4'>
                 <img 
                 src={news?.ImagePath}
                 alt={news?.Title}
