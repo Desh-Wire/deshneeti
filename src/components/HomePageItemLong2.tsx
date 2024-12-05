@@ -17,7 +17,7 @@ const HomePageItemLong2 = ({ heading, category, readtime, author, image, router,
         router.push(`/category/${category}`)
     }
 
-    const handleNewsClick = (heading: string) => {
+    const handleNewsClick = (uuid: string) => {
         router.push(`/news/${uuid}`)
     }
 

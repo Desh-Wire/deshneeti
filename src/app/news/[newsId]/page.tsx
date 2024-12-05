@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { EXAMPLES } from '@/lib/example'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { format, parse } from 'date-fns';
 import { Twitter,Facebook,Instagram,Linkedin } from 'lucide-react';
 
@@ -10,14 +10,21 @@ const page = () => {
 
     const param = useParams()
     const newsId = param.newsId
+    
     const news = EXAMPLES.find(item => item.uuid === newsId)
+
+    const router = useRouter()
+
+    const handeCategoryClick = (category: string) => {
+        router.push(`/category/${category}`)
+    }
 
     return (
         <div className='w-[70%] flex flex-col gap-y-4'>
 
             {/* Category */}
             <div>
-                <p className='text-red-600 uppercase tracking-widest mb-2'>
+                <p className='text-red-600 uppercase tracking-widest mb-2 hover:cursor-pointer' onClick={() => handeCategoryClick(news!.Category.toLowerCase())}>
                     {news?.Category}
                 </p>
             </div>

@@ -12,14 +12,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 const LANGUAGES = ["English", "हिंदी", "اردू"]
 const MENUITEMS = [
     { name: "Home", path: "/" },
-    { name: "Politics", path: "/categories/politics/all" },
-    { name: "Economy", path: "/categories/economy/all" },
-    { name: "World", path: "/categories/world/all" },
-    { name: "Security", path: "/categories/security/all" },
-    { name: "Law", path: "/categories/law/all" },
-    { name: "Science", path: "/categories/science/all" },
-    { name: "Society", path: "/categories/society/all" },
-    { name: "Culture", path: "/categories/culture/all" },
+    { name: "Politics", path: "/category/politics" },
+    { name: "Economy", path: "/category/economy" },
+    { name: "World", path: "/category/world" },
+    { name: "Security", path: "/category/security" },
+    { name: "Law", path: "/category/law" },
+    { name: "Science", path: "/category/science" },
+    { name: "Society", path: "/category/society" },
+    { name: "Culture", path: "/category/culture" },
 ];
 const OTHERITEMS = [
     { name: "Editor's Pick", path: "/editors-pick" },

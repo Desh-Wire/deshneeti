@@ -49,7 +49,7 @@ const Footer = () => {
                             {/* Topics in a 4x2 grid */}
                             <div className="grid grid-cols-2 grid-rows-4 gap-6">
                                 {TOPICS.map((topic, index) => (
-                                    <Link key={index} href={`/categories/${topic.toLowerCase()}/all`} className="text-gray-200 hover:text-gray-300">
+                                    <Link key={index} href={`/category/${topic.toLowerCase()}`} className="text-gray-200 hover:text-gray-300">
                                         {topic}
                                     </Link>
                                 ))}
