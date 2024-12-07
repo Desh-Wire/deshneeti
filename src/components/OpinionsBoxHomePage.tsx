@@ -24,7 +24,7 @@ const OpinionsBoxHomePage = ({ className, router }: { className?: string, router
                 }
             </div>
             <div className='self-end'>
-                <button className='w-full py-2 bg-red-700 text-white font-bold rounded-md p-4 hover:bg-white hover:text-red-700' onClick={() => router.push('/')}>
+                <button className='w-full py-2 bg-red-700 text-white font-bold rounded-md p-4 hover:bg-white hover:text-red-700' onClick={() => router.push('/voices/opinion')}>
                     View More
                 </button>
             </div>

@@ -20,7 +20,7 @@ const Analysis = ({ className,router }: { className?:string,router: AppRouterIns
                 <h1 className='text-4xl font-extrabold'>
                     Analysis
                 </h1>
-                <ViewMore black={true}/>
+                <ViewMore black={true} goTo='/voices/analysis'/>
             </div>
 
             <div className='w-full h-1 bg-red-700'/>

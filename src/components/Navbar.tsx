@@ -22,8 +22,8 @@ const MENUITEMS = [
     { name: "Culture", path: "/category/culture" },
 ];
 const OTHERITEMS = [
-    { name: "Editor's Pick", path: "/editors-pick" },
-    { name: "Opinions", path: "/opinions" },
+    { name: "Editor's Pick", path: "/voices/editors_pick" },
+    { name: "Opinions", path: "/voices/opinion" },
 ]
 
 const Navbar = () => {

@@ -61,11 +61,20 @@ const Footer = () => {
                                 Voices
                             </p>
                             <div className="flex flex-col items-center justify-between gap-y-6">
-                                {VOICES.map((voice, index) => (
-                                    <Link key={index} href={`/voices/${voice.toLowerCase()}`} className="text-gray-200 hover:text-gray-300">
-                                        {voice}
-                                    </Link>
-                                ))}
+                                {VOICES.map((voice, index) => {
+                                    // Convert to lowercase, replace spaces with underscores, and remove apostrophes
+                                    const sanitizedVoice = voice.toLowerCase().replace(/ /g, "_").replace(/'/g, "");
+
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={`/voices/${sanitizedVoice}`}
+                                            className="text-gray-200 hover:text-gray-300"
+                                        >
+                                            {voice}
+                                        </Link>
+                                    );
+                                })}
                             </div>
                         </div>
                         {/* Navigate */}

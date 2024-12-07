@@ -28,7 +28,7 @@ const VideoSection = ({ router }: { router: AppRouterInstance }) => {
                             Videos
                         </span>
                     </div>
-                    <ViewMore black={false} />
+                    <ViewMore black={false} goTo="/videos" />
                 </div>
                 {/* content */}
                 <div className="flex flex-row items-stretch justify-items-stretch gap-4">
