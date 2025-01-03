@@ -8,8 +8,23 @@ import { Input } from "./ui/input"
 import { Search, Menu, Youtube } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useLanguage } from "@/app/LanguageContext"
 
-const LANGUAGES = ["English", "हिंदी", "اردू"]
+// const LANGUAGES = ["English", "हिंदी", "اردू"]
+const LANGUAGES = [
+    {
+        displayName: "English",
+        value: "en"
+    },
+    {
+        displayName: "हिंदी",
+        value: "hi"
+    },
+    {
+        displayName: "اردو",
+        value: "ur"
+    },
+]
 const MENUITEMS = [
     { name: "Home", path: "/" },
     { name: "Politics", path: "/category/politics" },
@@ -30,7 +45,8 @@ const Navbar = () => {
     const router = useRouter();
     const pathName = usePathname();
 
-    const [selectedLanguage, setSelectedlanguage] = useState(LANGUAGES[0]);
+    // const [selectedLanguage, setSelectedlanguage] = useState(LANGUAGES[0]);
+    const { language, switchLanguage } = useLanguage();
     const [searchQuery, setSearchQuery] = useState('');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -71,13 +87,13 @@ const Navbar = () => {
                                 {/* Language Options */}
                                 <div>
                                     <ul className="flex items-center gap-x-4">
-                                        {LANGUAGES.map((language, index) => (
+                                        {LANGUAGES.map((lang, index) => (
                                             <li
                                                 key={index}
-                                                onClick={() => setSelectedlanguage(language)}
-                                                className={cn('cursor-pointer text-lg transition-colors duration-200 ease-in-out', selectedLanguage === language ? 'text-red-600 font-bold' : 'text-gray-600')}
+                                                onClick={() => switchLanguage(lang.value)}
+                                                className={cn('cursor-pointer text-lg transition-colors duration-200 ease-in-out', language === lang.value ? 'text-red-600 font-bold' : 'text-gray-600')}
                                             >
-                                                {language}
+                                                {lang.displayName}
                                             </li>
                                         ))}
                                     </ul>
@@ -155,13 +171,13 @@ const Navbar = () => {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent>
                                     {/* Language Selection */}
-                                    {LANGUAGES.map((language, index) => (
+                                    {LANGUAGES.map((lang, index) => (
                                         <DropdownMenuItem
                                             key={index}
-                                            onSelect={() => setSelectedlanguage(language)}
-                                            className={cn(selectedLanguage === language ? 'text-red-600 font-bold' : 'text-gray-600')}
+                                            onSelect={() => switchLanguage(lang.value)}
+                                            className={cn(language === lang.value ? 'text-red-600 font-bold' : 'text-gray-600')}
                                         >
-                                            {language}
+                                            {lang.displayName}
                                         </DropdownMenuItem>
                                     ))}
                                     {/* Divider */}

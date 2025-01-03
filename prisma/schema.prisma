@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id        String     @id @default(cuid())
+  name      String
+  newsItems NewsItem[]
+}
+
+model Author {
+  id        String     @id @default(cuid())
+  name      String
+  photoUrl  String
+  fullPath  String
+  email     String
+  newsItems NewsItem[]
+  active    Boolean    @default(true)
+}
+
+model NewsItem {
+  id         String   @id @default(cuid())
+  headingEng String
+  headingHin String
+  headingUrd String
+  taglineEng String
+  taglineHin String
+  taglineUrd String
+  pictureUrl String
+  picturePath String
+  contentEng String
+  contentHin String
+  contentUrd String
+  authorId   String
+  author     Author   @relation(fields: [authorId], references: [id])
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  tags       String[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  readTime   Int
+  views      Int      @default(0)
+}
