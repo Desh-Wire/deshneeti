@@ -205,7 +205,7 @@ const Navbar = () => {
             </div>
 
             {/* Bottom Bar - Large Screens */}
-            <div className="bg-[#F2EEE3] hidden lg:block">
+            <div className="bg-red-600 hidden lg:block">
                 <MaxWidthWrapper>
                     <div className="flex justify-between items-center px-4 pt-2">
                         {/* Left List */}
@@ -219,7 +219,7 @@ const Navbar = () => {
                                             "cursor-pointer text-base md:text-lg font-medium transition-colors duration-200 ease-in-out hover:font-semibold text-gray-700 py-2",
                                             pathName === item.path
                                                 ? "font-semibold border-b-4 border-[#9C1818]"
-                                                : "text-gray-700"
+                                                : "text-white"
                                         )}
                                     >
                                         {item.name}
@@ -238,7 +238,7 @@ const Navbar = () => {
                                             "cursor-pointer text-base md:text-lg font-medium transition-colors duration-200 ease-in-out hover:font-semibold text-gray-700",
                                             pathName === item.path
                                                 ? "font-semibold border-b-4 border-[#9C1818]"
-                                                : "text-gray-700"
+                                                : "text-white"
                                         )}
                                     >
                                         {item.name}
