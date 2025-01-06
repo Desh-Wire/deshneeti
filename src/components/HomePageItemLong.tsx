@@ -9,10 +9,11 @@ type HomePageItemProps = {
     author: string
     image: string
     router: AppRouterInstance
+    tagline: string
     uuid: string
 }
 
-const HomePageItemLong = ({ heading, category, readtime, author, image, router,uuid }: HomePageItemProps) => {
+const HomePageItemLong = ({ heading, category, readtime, author, image, router,uuid,tagline }: HomePageItemProps) => {
     const handeCategoryClick = (category: string) => {
         router.push(`/category/${category}`)
     }
@@ -32,7 +33,7 @@ const HomePageItemLong = ({ heading, category, readtime, author, image, router,u
                     {heading}
                 </p>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab repellat nisi molestiae explicabo ea ipsum praesentium rem sequi temporibus neque? Aliquam minima quam repellendus numquam nesciunt vitae sit magni porro.
+                    {tagline}
                 </p>
                 <div className='flex flex-row justify-between items-center'>
                     <p className="text-sm tracking-tight">

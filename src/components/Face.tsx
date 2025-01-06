@@ -8,13 +8,24 @@ import { Clock, Radio } from 'lucide-react';
 import { MyClock } from './Clock';
 import Divider from './Divider';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { News } from '@/lib/utils';
 
-const Face = ({ router }: { router: AppRouterInstance }) => {
+const Face = ({ router, news }: { router: AppRouterInstance, news: News[]}) => {
 
-    const editorsPick = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 3);
-    const justIn = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 8);
-    const center = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 1);
-    const centerBelow = EXAMPLES.sort(() => Math.random() - 0.5).slice(1, 3);
+    const editorsPick = news.filter((item) => item.tags.includes('Editors Choice')).slice(0, Math.min(3, news.length));
+    const center = news.slice(0, 1);
+    const centerBelow = news.slice(1, 3);
+    const justIn = news.slice(3);
+
+    if(news === undefined) {
+        return (
+            <div className='flex items-center justify-center h-screen'>
+                <div className='text-3xl font-semibold text-gray-700'>
+                    Loading...
+                </div>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -27,17 +38,17 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                             EDITOR'S PICK
                         </p>
                         <div className='w-full py-4 bg-[#ece2c8] flex flex-row items-center justify-between rounded-md px-10  border-red-600 border '>
-                            <Clock className='text-lg font-bold'/>
-                            <MyClock/>
+                            <Clock className='text-lg font-bold' />
+                            <MyClock />
                         </div>
-                        <Divider/>
+                        <Divider />
                     </div>
                     {/* Items */}
                     <div className='flex flex-col gap-y-2 justify-between'>
                         {
                             editorsPick.map((item, index) => (
                                 <div className='flex flex-col gap-y-2' key={index}>
-                                    <HomePageItemSmall heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} uuid={item.uuid} />
+                                    <HomePageItemSmall heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                                     <Divider />
                                 </div>
                             ))
@@ -47,14 +58,14 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                 {/* Center div */}
                 <div className='flex flex-col h-full items-center w-[60%]'>
                     <div className='w-full h-[60%]'>
-                        <HomePageItemBig heading={center[0].Title} category={center[0].Category} readtime={center[0].ReadTime.toString()} author={center[0].Author} image={center[0].ImagePath} router={router} uuid={center[0].uuid}/>
+                        <HomePageItemBig heading={center[0].headingEng ?? center[0].headingHin ?? center[0].headingUrd ?? ""} category={center[0].category.name} readtime={center[0].readTime.toString()} author={center[0].author.name} image={center[0].pictureUrl ?? ""} router={router} uuid={center[0].id} />
                     </div>
                     <Divider />
                     <div className='h-[40%] w-full flex flex-col gap-y-2'>
                         {
                             centerBelow.map((item, index) => (
                                 <div className='flex flex-col gap-y-2' key={index}>
-                                    <HomePageItemLong heading={item.Title} category={item.Category} readtime={item.ReadTime.toString()} author={item.Author} image={item.ImagePath} router={router} uuid={item.uuid} />
+                                    <HomePageItemLong heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} tagline={item.taglineEng ?? item.taglineHin ?? item.taglineUrd ?? ""} />
                                     <Divider />
                                 </div>
                             ))
@@ -73,7 +84,7 @@ const Face = ({ router }: { router: AppRouterInstance }) => {
                         {
                             justIn.map((item, index) => (
                                 <div key={index} className='flex flex-col gap-y-2'>
-                                    <JustInItem key={index} category={item.Category} title={item.Title} router={router} uuid={item.uuid}/>
+                                    <JustInItem key={index} category={item.category.name} title={item.headingEng ?? item.headingUrd ?? item.headingHin ?? ""} router={router} uuid={item.id} />
                                     <Divider />
                                 </div>
                             ))

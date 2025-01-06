@@ -14,7 +14,8 @@ export const getAllEnglishNews = async() => {
                 pictureUrl:true,
                 author:true,
                 readTime:true,
-                views:true
+                views:true,
+                tags:true,
             },
             orderBy:{
                 createdAt:'desc',
@@ -38,7 +39,8 @@ export const getAllHindiNews = async() => {
                 pictureUrl:true,
                 author:true,
                 readTime:true,
-                views:true
+                views:true,
+                tags:true,
             },
             orderBy:{
                 createdAt:'desc',
@@ -62,7 +64,8 @@ export const getAllUrduNews = async() => {
                 pictureUrl:true,
                 author:true,
                 readTime:true,
-                views:true
+                views:true,
+                tags:true,
             },
             orderBy:{
                 createdAt:'desc',

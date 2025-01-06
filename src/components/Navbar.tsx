@@ -25,21 +25,78 @@ const LANGUAGES = [
         value: "ur"
     },
 ]
+
 const MENUITEMS = [
-    { name: "Home", path: "/" },
-    { name: "Politics", path: "/category/politics" },
-    { name: "Economy", path: "/category/economy" },
-    { name: "World", path: "/category/world" },
-    { name: "Security", path: "/category/security" },
-    { name: "Law", path: "/category/law" },
-    { name: "Science", path: "/category/science" },
-    { name: "Society", path: "/category/society" },
-    { name: "Culture", path: "/category/culture" },
+    {
+        en_name: "Home",
+        hi_name: "होम",
+        ur_name: "ہوم",
+        path: "/"
+    },
+    {
+        en_name: "Politics",
+        hi_name: "राजनीति",
+        ur_name: "سیاست",
+        path: "/category/politics"
+    },
+    {
+        en_name: "Economy",
+        hi_name: "अर्थव्यवस्था",
+        ur_name: "معیشت",
+        path: "/category/economy"
+    },
+    {
+        en_name: "World",
+        hi_name: "विश्व",
+        ur_name: "دنیا",
+        path: "/category/world"
+    },
+    {
+        en_name: "Security",
+        hi_name: "सुरक्षा",
+        ur_name: "سیکیورٹی",
+        path: "/category/security"
+    },
+    {
+        en_name: "Law",
+        hi_name: "क़ानून",
+        ur_name: "قانون",
+        path: "/category/law"
+    },
+    {
+        en_name: "Science",
+        hi_name: "विज्ञान",
+        ur_name: "سائنس",
+        path: "/category/science"
+    },
+    {
+        en_name: "Society",
+        hi_name: "समाज",
+        ur_name: "معاشرہ",
+        path: "/category/society"
+    },
+    {
+        en_name: "Culture",
+        hi_name: "संस्कृति",
+        ur_name: "ثقافت",
+        path: "/category/culture"
+    }
 ];
+
 const OTHERITEMS = [
-    { name: "Editor's Pick", path: "/voices/editors_pick" },
-    { name: "Opinions", path: "/voices/opinion" },
-]
+    {
+        en_name: "Editor's Pick",
+        hi_name: "संपादक की पसंद",
+        ur_name: "ایڈیٹر کی پسند",
+        path: "/voices/editors_pick"
+    },
+    {
+        en_name: "Opinions",
+        hi_name: "विचार",
+        ur_name: "آراء",
+        path: "/voices/opinion"
+    }
+];
 
 const Navbar = () => {
     const router = useRouter();
@@ -49,6 +106,8 @@ const Navbar = () => {
     const { language, switchLanguage } = useLanguage();
     const [searchQuery, setSearchQuery] = useState('');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const getLocalizedName = (item: any) => item[`${language}_name`];
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
@@ -194,7 +253,7 @@ const Navbar = () => {
                                                     : "text-gray-700"
                                             )}
                                         >
-                                            {item.name}
+                                            {getLocalizedName(item)}
                                         </DropdownMenuItem>
                                     ))}
                                 </DropdownMenuContent>
@@ -222,7 +281,7 @@ const Navbar = () => {
                                                 : "text-white"
                                         )}
                                     >
-                                        {item.name}
+                                        {getLocalizedName(item)}
                                     </li>
                                 ))}
                             </ul>
@@ -241,7 +300,7 @@ const Navbar = () => {
                                                 : "text-white"
                                         )}
                                     >
-                                        {item.name}
+                                        {getLocalizedName(item)}
                                     </li>
                                 ))}
                             </ul>
