@@ -59,13 +59,21 @@ export default function Home() {
     );
   }
 
+  if(news.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-3xl font-semibold text-gray-700">No news found</div>
+      </div>
+    );
+  }
+
   return (
     <div className="my-8">
       <MaxWidthWrapper>
         <Face router={router} news={news}/>
       </MaxWidthWrapper>
-      <MostRead className="mt-14" router={router} />
-      <VideoSection router={router} />
+      <MostRead className="mt-14" router={router} news={news}/>
+      <VideoSection router={router} news={news}/>
       <MaxWidthWrapper>
         <Analysis router={router} className="my-14" />
       </MaxWidthWrapper>
