@@ -3,17 +3,17 @@ import { EXAMPLES } from "@/lib/example"
 import HomePageGridItem from "./HomePageGridItem";
 import OpinionsBoxHomePage from "./OpinionsBoxHomePage";
 import DontMissTheseHomePage from "./DontMissTheseHomePage";
-import { cn } from "@/lib/utils";
+import { cn, News } from "@/lib/utils";
 
 
-const HomePageGrid = ({ className, router }: { className?: string, router: AppRouterInstance }) => {
+const HomePageGrid = ({ className, router,news }: { className?: string, router: AppRouterInstance, news:News[] }) => {
 
-    const list1 = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 3);
-    const list2 = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 3);
-    const list3 = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 3);
-    const list4 = EXAMPLES.sort(() => Math.random() - 0.5).slice(0, 3);
-    const lists = [list1, list2, list3, list4];
+    const Politics = news.filter((item) => item.category.name === 'Politics' || item.category.name === 'politics').slice(0, Math.min(3, news.length));
+    const Law = news.filter((item) => item.category.name === 'Law' || item.category.name === 'law').slice(0, Math.min(3, news.length));
+    const Crime = news.filter((item) => item.category.name === 'Crime' || item.category.name === 'crime').slice(0, Math.min(3, news.length));
+    const Elections = news.filter((item) => item.category.name === 'Elections' || item.category.name === 'elections').slice(0, Math.min(3, news.length));
 
+    const lists = [Politics, Law, Crime, Elections];
 
     return (
         <div className={cn('flex flex-row gap-x-4',className)}>
@@ -25,14 +25,14 @@ const HomePageGrid = ({ className, router }: { className?: string, router: AppRo
                 <div className="absolute left-0 right-0 top-1/2 h-[3px] bg-[#ece2c8]"></div>
                 {
                     lists.map((list, index) => (
-                        <HomePageGridItem key={index} router={router} heading={`Category ${index + 1}`} news={list} />
+                        <HomePageGridItem key={index} router={router} news={list} />
                     ))
                 }
             </div>
             {/* rightmost columnn */}
             <div className="w-[35%] flex flex-col gap-y-4">
-                <OpinionsBoxHomePage router={router} />
-                <DontMissTheseHomePage router={router} />
+                <OpinionsBoxHomePage router={router} news={news}/>
+                <DontMissTheseHomePage router={router} news={news}/>
             </div>
         </div>
     )

@@ -4,11 +4,11 @@ type JustInItemProps = {
     author: string
     title: string
     router: AppRouterInstance
-    image?: string
+    image: string
     uuid: string
 }
 
-const AuthorItem = ({ author, title, router, image='/img/icons8-author-94.png', uuid }: JustInItemProps) => {
+const AuthorItem = ({ author, title, router, image, uuid }: JustInItemProps) => {
     const handleAuthorClick = (author: string) => {
         router.push(`/author/${author}`)
     }

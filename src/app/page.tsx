@@ -75,11 +75,11 @@ export default function Home() {
       <MostRead className="mt-14" router={router} news={news}/>
       <VideoSection router={router} news={news}/>
       <MaxWidthWrapper>
-        <Analysis router={router} className="my-14" />
+        <Analysis router={router} className="my-14" news={news}/>
       </MaxWidthWrapper>
       <Divider />
       <MaxWidthWrapper>
-        <HomePageGrid router={router} className="my-14" />
+        <HomePageGrid router={router} className="my-14" news={news}/>
       </MaxWidthWrapper>
     </div>
   );
