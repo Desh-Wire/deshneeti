@@ -2,86 +2,88 @@
 
 import { db } from "@/db";
 
-export const getAllEnglishNewsByCategory = async(category:string) => {
-    try{
+export const getAllEnglishNewsByCategory = async (category: string) => {
+    try {
+        // console.log(category);
         const res = await db.newsItem.findMany({
-            select:{
-                id:true,
-                headingEng:true,
-                taglineEng:true,
-                category:true,
-                createdAt:true,
-                pictureUrl:true,
-                author:true,
-                readTime:true,
-                views:true,
-                tags:true,
+            select: {
+                id: true,
+                headingEng: true,
+                taglineEng: true,
+                category: true,
+                createdAt: true,
+                pictureUrl: true,
+                author: true,
+                readTime: true,
+                views: true,
+                tags: true,
             },
-            where:{
-                category: { name: category },
+            where: {
+                category: { name: { contains: category, mode: 'insensitive' } },
             },
-            orderBy:{
-                createdAt:'desc',
+            orderBy: {
+                createdAt: 'desc',
             }
         })
+        // console.log(res);
         return res;
-    }catch(e){
+    } catch (e) {
         console.error(e);
     }
 }
 
-export const getAllHindiNewsByCategory = async(category:string) => {
-    try{
+export const getAllHindiNewsByCategory = async (category: string) => {
+    try {
         const res = await db.newsItem.findMany({
-            select:{
-                id:true,
-                headingHin:true,
-                taglineHin:true,
-                category:true,
-                createdAt:true,
-                pictureUrl:true,
-                author:true,
-                readTime:true,
-                views:true,
-                tags:true,
+            select: {
+                id: true,
+                headingHin: true,
+                taglineHin: true,
+                category: true,
+                createdAt: true,
+                pictureUrl: true,
+                author: true,
+                readTime: true,
+                views: true,
+                tags: true,
             },
-            where:{
-                category: { name: category },
+            where: {
+                category: { name: { contains: category, mode: 'insensitive' } },
             },
-            orderBy:{
-                createdAt:'desc',
+            orderBy: {
+                createdAt: 'desc',
             }
         })
         return res;
-    }catch(e){
+    } catch (e) {
         console.error(e);
     }
 }
 
-export const getAllUrduNewsByCategory = async(category:string) => {
-    try{
+export const getAllUrduNewsByCategory = async (category: string) => {
+    try {
         const res = await db.newsItem.findMany({
-            select:{
-                id:true,
-                headingUrd:true,
-                taglineUrd:true,
-                category:true,
-                createdAt:true,
-                pictureUrl:true,
-                author:true,
-                readTime:true,
-                views:true,
-                tags:true,
+            select: {
+                id: true,
+                headingUrd: true,
+                taglineUrd: true,
+                category: true,
+                createdAt: true,
+                pictureUrl: true,
+                author: true,
+                readTime: true,
+                views: true,
+                tags: true,
             },
-            where:{
-                category: { name: category },
+            where: {
+                category: { name: { contains: category, mode: 'insensitive' } },
             },
-            orderBy:{
-                createdAt:'desc',
+            orderBy: {
+                createdAt: 'desc',
             }
         })
         return res;
-    }catch(e){
+    } catch (e) {
         console.error(e);
     }
 }

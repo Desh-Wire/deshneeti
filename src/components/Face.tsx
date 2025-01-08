@@ -35,7 +35,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                 <div className='w-[25%] flex flex-col justify-between'>
                     <div className='flex flex-col gap-y-8'>
                         <p className='font-extrabold text-2xl capitalize'>
-                            EDITOR'S PICK
+                            EDITOR'S CHOICE
                         </p>
                         <div className='w-full py-4 bg-[#ece2c8] flex flex-row items-center justify-between rounded-md px-10  border-red-600 border '>
                             <Clock className='text-lg font-bold' />

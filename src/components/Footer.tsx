@@ -29,7 +29,7 @@ const Footer = () => {
       legal: "Legal",
       rightsReserved: "All rights reserved. Deshneeti",
       topicsOptions: ["Politics", "Law", "Economy", "Science", "World", "Society", "Security", "Culture"],
-      voicesOptions: ["Opinion", "Editor's Pick", "Analysis"],
+      voicesOptions: ["Opinion", "Editor's Choice", "Analysis"],
       navigateOptions: ["About Us", "Support Us", "Contact Us"],
       legalOptions: ["Terms and Conditions", "Privacy Policy", "Refund Policy"],
     },

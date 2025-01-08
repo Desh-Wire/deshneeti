@@ -1,20 +1,9 @@
-import { cn } from '@/lib/utils'
+import { cn, News } from '@/lib/utils'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import React from 'react'
 
-type newsItemType = {
-    uuid: string,
-    Title: string,
-    Content: string,
-    ImagePath: string,
-    Category: string,
-    Author: string,
-    ReadTime: number,
-    CreatedAt: string,
-    tags?: string[]
-}
 
-const VideoBigItem = ({ news, router, className }: { news: newsItemType, router: AppRouterInstance, className?: string}) => {
+const VideoBigItem = ({ news, router, className }: { news: News, router: AppRouterInstance, className?: string}) => {
 
     const handleNewsClick = (uuid: string) => {
         router.push(`/news/${uuid}`)
@@ -35,25 +24,25 @@ const VideoBigItem = ({ news, router, className }: { news: newsItemType, router:
             {/* big box */}
             <div className='flex flex-col gap-y-4 border border-black'>
                 <img
-                    src={news.ImagePath}
-                    alt={news.Title}
+                    src={news.pictureUrl}
+                    alt={news.headingEng ?? news.headingHin ?? news.headingUrd ?? "" }
                     className='w-full object-cover aspect-video'
                 />
                 <div className='p-4 flex flex-col gap-y-4'>
                     <p className='font-bold text-xl uppercase text-red-700'>
-                        {news.Category}
+                        {news.category.name}
                     </p>
-                    <p className='text-3xl font-bold hover:cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(news.uuid)}>
-                        {news.Title}
+                    <p className='text-3xl font-bold hover:cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(news.id)}>
+                        {news.headingEng ?? news.headingHin ?? news.headingUrd ?? "" }
                     </p>
                     <p className='italic'>
-                        '{news.Content}'
+                        '{news.taglineEng ?? news.taglineHin ?? news.taglineUrd ?? ""}'
                     </p>
                     <p className='text-sm'>
-                        {news.Author} | {news.ReadTime} mins read
+                        {news.author.name} | {news.readTime} mins watch
                     </p>
                     {/* map of tags */}
-                    <div className='flex flex-row gap-x-4'>
+                    <div className='flex flex-row flex-wrap gap-y-4 gap-x-4'>
                         {
                             news.tags.map((tag, index) => (
                                 <div key={index} className='group border border-red-700 p-1 hover:bg-red-700 transition ease-in hover:cursor-pointer' onClick={() => handleTagClick(tag)}>

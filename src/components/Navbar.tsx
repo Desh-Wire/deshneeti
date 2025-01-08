@@ -85,10 +85,10 @@ const MENUITEMS = [
 
 const OTHERITEMS = [
     {
-        en_name: "Editor's Pick",
+        en_name: "Editor's Choice",
         hi_name: "संपादक की पसंद",
         ur_name: "ایڈیٹر کی پسند",
-        path: "/voices/editors_pick"
+        path: "/voices/editors_choice"
     },
     {
         en_name: "Opinions",
