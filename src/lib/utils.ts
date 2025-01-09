@@ -14,11 +14,14 @@ export interface News {
   pictureUrl?: string;
   headingUrd?: string;
   taglineUrd?: string;
-  createdAt: Date;
+  contentEng?: string;
+  contentHin?: string;
+  contentUrd?: string;
+  createdAt?: Date;
   readTime: number;
-  views: number;
-  tags: string[];
-  author: {
+  views?: number;
+  tags?: string[];
+  author?: {
     id: string;
     name: string;
     photoUrl: string;
@@ -26,7 +29,7 @@ export interface News {
     email: string;
     active: boolean;
   };
-  category: {
+  category?: {
     id: string;
     name: string;
   };

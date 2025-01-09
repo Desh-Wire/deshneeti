@@ -15,7 +15,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
     const editorsPick = news.filter((item) => item.tags.includes('Editors Choice')).slice(0, Math.min(3, news.length));
     const center = news.slice(0, 1);
     const centerBelow = news.slice(1, 3);
-    const justIn = news.slice(3);
+    const justIn = news.slice(3,Math.min(11,news.length));
 
     if (news === undefined) {
         return (

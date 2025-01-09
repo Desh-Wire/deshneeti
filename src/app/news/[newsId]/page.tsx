@@ -1,17 +1,25 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { EXAMPLES } from '@/lib/example'
 import { useParams, useRouter } from 'next/navigation'
 import { format, parse } from 'date-fns';
-import { Twitter,Facebook,Instagram,Linkedin } from 'lucide-react';
+import { Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { useLanguage } from '@/app/LanguageContext';
+import { News } from '@/lib/utils';
+import { getEnglishNewsById, getEnglishNewsLatest, getHindiNewsById, getHindiNewsLatest, getUrduNewsById, getUrduNewsLatest } from './actions';
+import { convertFromRaw, Editor, EditorState } from 'draft-js';
 
 const page = () => {
 
+    const [news, setNews] = useState<News[]>([])
+    const [loading, setLoading] = useState(true)
+    const { language } = useLanguage() as { language: 'en' | 'hi' | 'ur', switchLanguage: (lang: 'en' | 'hi' | 'ur') => void };
+
     const param = useParams()
-    const newsId = param.newsId
-    
-    const news = EXAMPLES.find(item => item.uuid === newsId)
+    const newsId = param.newsId as string;
+
+    // const news = EXAMPLES.find(item => item.uuid === newsId)
 
     const router = useRouter()
 
@@ -19,49 +27,109 @@ const page = () => {
         router.push(`/category/${category}`)
     }
 
+    const fetchNewsByLanguage = {
+        en: getEnglishNewsById,
+        hi: getHindiNewsById,
+        ur: getUrduNewsById,
+    };
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                setLoading(true);
+                const fetchFunction = fetchNewsByLanguage[language];
+                // const fetchLatestFunction = fetchLatestByLanguage[language];
+                if (fetchFunction) {
+                    // console.log("Fetching news...");
+                    if (typeof newsId === 'string') {
+                        const news = await fetchFunction(newsId);
+                        // const latest = await fetchLatestFunction(newsId);
+                        // if (latest) setLatest(latest)
+                        // console.log(news)
+                        if (news) setNews(news);
+                    } else {
+                        console.error("Invalid category");
+                    }
+                    // console.log(news); // Handle the news data as needed
+                    setLoading(false);
+                } else {
+                    console.error("Unsupported language");
+                }
+            } catch (e) {
+                console.error("Error fetching news:", e);
+            }
+        };
+
+        fetchNews();
+    }, [language]);
+
+    const parseContent = (content: string) => {
+        try {
+            const contentState = convertFromRaw(JSON.parse(content));
+            return EditorState.createWithContent(contentState);
+        } catch {
+            return null;
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen mx-auto my-auto">
+                <div className="text-3xl font-semibold text-gray-700 mx-auto my-auto">Loading...</div>
+            </div>
+        );
+    }
+
+    if (!loading && news === undefined || news.length === 0) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="text-3xl font-semibold text-gray-700">No news found for this category</div>
+            </div>
+        );
+    }
+
+    const content = parseContent(news[0].contentEng ?? news[0].contentHin ?? news[0].contentUrd ?? "") || EditorState.createEmpty();
+
     return (
         <div className='w-[70%] flex flex-col gap-y-4'>
 
             {/* Category */}
             <div>
-                <p className='text-red-600 uppercase tracking-widest mb-2 hover:cursor-pointer' onClick={() => handeCategoryClick(news!.Category.toLowerCase())}>
-                    {news?.Category}
+                <p className='text-red-600 uppercase tracking-widest mb-2 hover:cursor-pointer' onClick={() => handeCategoryClick(news[0]!.category!.name.toLowerCase())}>
+                    {news[0]!.category?.name}
                 </p>
             </div>
 
             {/* Heading/author/info */}
             <div>
                 <p className='font-bold text-4xl leading-relaxed'>
-                    {news?.Title}
+                    {news[0].headingEng ?? news[0].headingHin ?? news[0].headingUrd ?? ""}
                 </p>
                 <div className='flex flex-row gap-x-4'>
                     {/* Author */}
                     <div className='flex flex-row items-center'>
                         {/* <img src={news?.AuthorImage} alt={news?.Author} /> */}
-                        <img 
-                        src='/img/icons8-author-94.png' 
-                        alt={news?.Author} 
-                        className='object-cover cursor-pointer hover:scale-105 transition-transform rounded-full p-4 aspect-square h-16'
+                        <img
+                            src='/img/icons8-author-94.png'
+                            alt={news[0]!.author!.name}
+                            className='object-cover cursor-pointer hover:scale-105 transition-transform rounded-full p-4 aspect-square h-16'
                         />
                         <div className='flex flex-col'>
                             <p className='tracking-tighter text-sm font-semibold'>
-                                {news?.Author}
+                                {news[0]!.author!.name}
                             </p>
                             {/* 29/Nov/2024 | 5 min read */}
                             <p className='tracking-tighter text-sm'>
-                                {news?.CreatedAt
-                                    ? format(parse(news.CreatedAt, "yyyy-MM-dd HH:mm:ss", new Date()), "dd/MMM/yyyy")
-                                    : "Date not available"}{" "}
-                                | {news?.ReadTime || "Unknown"} min read
+                                {news[0]!.createdAt?.toDateString()} | {news[0].readTime} min read
                             </p>
                         </div>
                     </div>
                     {/* Socials */}
                     <div className='flex flex-row items-center justify-between gap-x-2'>
-                        <Twitter size={20} className='hover:text-red-600 cursor-pointer'/>
-                        <Facebook size={20} className='hover:text-red-600 cursor-pointer'/>
-                        <Instagram size={20} className='hover:text-red-600 cursor-pointer'/>
-                        <Linkedin size={20} className='hover:text-red-600 cursor-pointer'/>
+                        <Twitter size={20} className='hover:text-red-600 cursor-pointer' />
+                        <Facebook size={20} className='hover:text-red-600 cursor-pointer' />
+                        <Instagram size={20} className='hover:text-red-600 cursor-pointer' />
+                        <Linkedin size={20} className='hover:text-red-600 cursor-pointer' />
                     </div>
                 </div>
             </div>
@@ -69,19 +137,25 @@ const page = () => {
             {/* Tagline */}
             <div>
                 <p className=' italic text-sm'>
-                    {news?.Content}
+                    {news[0]!.taglineEng ?? news[0]!.taglineHin ?? news[0]!.taglineUrd ?? ""}
                 </p>
             </div>
 
             {/* content */}
-            <div className='flex flex-col gap-y-4 pr-4'>
-                <img 
-                src={news?.ImagePath}
-                alt={news?.Title}
-                className='w-full'
+            <div className='flex flex-col gap-y-8 pr-4'>
+                <img
+                    src={news[0].pictureUrl}
+                    alt={news[0].headingEng ?? news[0].headingHin ?? news[0].headingUrd ?? ""}
+                    className='w-full'
                 />
                 <div className=' text-base'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque illo, magnam perferendis ipsa natus exercitationem dolorem temporibus? Quis ut vitae dolorem facilis consectetur ipsa qui veniam quos et itaque dolores consequuntur ex praesentium libero, voluptatum illo animi? Blanditiis earum voluptas modi autem, eligendi dolores dolorum temporibus, impedit tempore commodi vero facere ullam, assumenda ducimus? Aliquid illum provident, assumenda rem, voluptate voluptas illo odit dignissimos non ad velit quia placeat nihil optio laboriosam, dicta commodi? Similique repudiandae totam vitae commodi maiores necessitatibus quaerat earum pariatur! Totam dolore libero ullam aperiam unde recusandae maxime, voluptas sunt enim fugit nihil fugiat, incidunt amet eum officiis minima maiores veniam quae voluptates cupiditate, laudantium debitis quasi molestias hic. Culpa, atque! Hic culpa non id temporibus inventore dolore nobis perspiciatis repudiandae ut natus vitae possimus enim quaerat laudantium, nulla libero tempora asperiores explicabo est dicta soluta. Nulla incidunt iusto quidem tempore culpa. Modi, aperiam iure? Eligendi illum reiciendis illo eveniet maiores ipsa facilis tempora a, pariatur magni! Sit iste nihil culpa obcaecati quos officia eius tempore sunt rerum similique fuga tempora, esse id. Aspernatur, cumque. Voluptatem eum, repudiandae voluptates, nemo beatae mollitia commodi omnis doloremque corrupti assumenda, officia rerum quae! Consectetur hic deleniti veritatis consequatur obcaecati aliquid mollitia voluptatem adipisci, vel assumenda reiciendis ipsum modi at voluptas eligendi atque neque fugiat maiores ad doloribus incidunt quaerat odit est? Dolores maxime deserunt esse? Optio ullam qui quibusdam rerum non impedit dolor sapiente reiciendis, voluptate aliquam accusamus ea voluptates, maxime nihil minus earum, magni cupiditate veniam? Beatae officiis eaque illo dolores minus laboriosam voluptates reiciendis nobis animi autem commodi nisi, iste, enim quaerat inventore esse ex odit hic totam nulla magnam? Natus illum sapiente dolore alias ipsam. Quaerat sint dolor saepe exercitationem rerum totam eum expedita esse eos impedit distinctio, tempore eius nulla qui, similique quis nesciunt ipsum! Id veritatis nostrum dolorem eveniet, officia accusamus, deserunt blanditiis vero explicabo quisquam beatae nulla nihil possimus est, quaerat voluptate exercitationem sequi optio! Dignissimos, deleniti aliquam! Quia debitis aspernatur velit eaque! Officia maxime omnis dolore eligendi veritatis deserunt repudiandae ut qui assumenda nemo similique ea harum inventore fugiat molestias saepe libero at recusandae, ratione maiores. Voluptate reiciendis vero fugit quisquam corrupti deserunt magnam porro animi dolorum tempore. Facilis obcaecati eius reprehenderit assumenda iste voluptatibus maxime pariatur ut voluptatem, iusto fugit voluptas necessitatibus, a eligendi officiis ipsum. Cum asperiores est iste natus molestiae eveniet modi aliquid quisquam, quasi vero aliquam similique id magnam aperiam, ducimus nesciunt labore non exercitationem ut quae! Deserunt, laboriosam beatae eum fuga quidem provident dolorem natus consequuntur asperiores aliquam at voluptatem possimus libero accusantium modi, vero ea eius reiciendis similique omnis qui! Voluptas inventore nostrum eos architecto consequatur odit tempora eligendi rem reprehenderit sed unde facilis dolor sequi impedit libero blanditiis deserunt, non suscipit rerum animi adipisci distinctio earum ipsa? Veniam vel cumque id necessitatibus obcaecati sed voluptatem, magni voluptates dolores quaerat perspiciatis sunt illo corporis excepturi at laborum, corrupti nihil accusantium quisquam iusto porro? Ea repellat nobis obcaecati, sapiente est praesentium soluta illum animi aliquid, laudantium amet!
+                    <div className="prose prose-gray max-w-none text-lg">
+                        <Editor
+                            editorState={content}
+                            readOnly
+                            onChange={() => { }}
+                        />
+                    </div>
                 </div>
             </div>
 

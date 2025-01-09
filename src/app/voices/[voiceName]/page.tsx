@@ -108,7 +108,7 @@ const page = () => {
                     <div className='flex flex-col gap-4 justify-between'>
                         {
                            extraNews.map((item, index) => (
-                            <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
+                            <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                         ))
                         }
                     </div>
@@ -123,7 +123,7 @@ const page = () => {
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-6 p-6'>
                         {
                             rest.map((item, index) => (
-                                <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
+                                <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                             ))
                         }
                     </div>

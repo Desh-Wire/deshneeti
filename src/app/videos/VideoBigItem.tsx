@@ -10,6 +10,7 @@ const VideoBigItem = ({ news, router, className }: { news: News, router: AppRout
     }
 
     const handleTagClick = (tag: string) => {
+        tag = tag.replace(/ /g, '_')
         router.push(`/tag/${tag}`)
     }
 
@@ -30,7 +31,7 @@ const VideoBigItem = ({ news, router, className }: { news: News, router: AppRout
                 />
                 <div className='p-4 flex flex-col gap-y-4'>
                     <p className='font-bold text-xl uppercase text-red-700'>
-                        {news.category.name}
+                        {news!.category!.name}
                     </p>
                     <p className='text-3xl font-bold hover:cursor-pointer hover:text-red-700' onClick={() => handleNewsClick(news.id)}>
                         {news.headingEng ?? news.headingHin ?? news.headingUrd ?? "" }
@@ -39,7 +40,7 @@ const VideoBigItem = ({ news, router, className }: { news: News, router: AppRout
                         '{news.taglineEng ?? news.taglineHin ?? news.taglineUrd ?? ""}'
                     </p>
                     <p className='text-sm'>
-                        {news.author.name} | {news.readTime} mins watch
+                        {news!.author!.name} | {news.readTime} mins watch
                     </p>
                     {/* map of tags */}
                     <div className='flex flex-row flex-wrap gap-y-4 gap-x-4'>
