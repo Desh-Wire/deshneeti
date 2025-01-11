@@ -63,6 +63,21 @@ const page = () => {
         fetchNews();
     }, [language]);
 
+    useEffect(() => {
+        const incrementViews = async () => {
+            try {
+                await fetch('/api/count', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ newsId })
+                })
+            } catch (error) {
+                console.error("Error incrementing views c", error);
+            }
+        }
+        incrementViews()
+    }, [newsId])
+
     const parseContent = (content: string) => {
         try {
             const contentState = convertFromRaw(JSON.parse(content));

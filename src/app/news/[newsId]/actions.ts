@@ -22,7 +22,7 @@ export const getEnglishNewsById = async (id: string) => {
                 id: id
             }
         })
-        console.log(res);
+        // console.log(res);
         return res;
     } catch (e) {
         console.error(e);
