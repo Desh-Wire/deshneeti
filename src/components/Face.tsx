@@ -57,7 +57,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                         </div>}
                 </div>
                 {/* Center div */}
-                <div className='flex flex-col h-full items-center md:w-[60%]'>
+                <div className='flex flex-col gap-y-4 h-full items-center md:w-[60%]'>
                     {center.length === 0 ? <div className='flex items-center justify-center h-96'> No News found </div> :
                         <div className='w-full h-[60%]'>
                             <HomePageItemBig heading={center[0].headingEng ?? center[0].headingHin ?? center[0].headingUrd ?? ""} category={center[0]!.category!.name} readtime={center[0].readTime.toString()} author={center[0]!.author!.name} image={center[0].pictureUrl ?? ""} router={router} uuid={center[0].id} />

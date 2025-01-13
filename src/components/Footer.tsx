@@ -139,7 +139,7 @@ const Footer = () => {
           {/* Legal */}
           <div>
             <div className="flex flex-col items-center justify-between gap-y-4">
-              <div className="flex items-center justify-between gap-x-32">
+              <div className="flex md:flex-row flex-col items-center justify-between md:gap-x-32 gap-y-6">
                 {content[selectedLanguage].legalOptions.map((option, index) => (
                   <Link key={index} href={`/${content.en.legalOptions[index].toLowerCase().replace(" ", "-")}`} className="text-gray-200 hover:text-gray-300">
                     {option}

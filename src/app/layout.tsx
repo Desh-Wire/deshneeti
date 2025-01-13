@@ -41,8 +41,8 @@ export default function RootLayout({
           <div>
             <div className="h-6 w-full" />
             <Navbar />
-            <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)] grainy-light">
-              <div className="flex-1 flex flex-col h-full">
+            <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)] grainy-light w-full overflow-x-hidden">
+              <div className="flex-1 flex flex-col h-full w-full">
                 {children}
               </div>
               <Footer />
