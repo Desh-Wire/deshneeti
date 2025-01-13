@@ -94,7 +94,7 @@ const OTHERITEMS = [
         en_name: "Opinions",
         hi_name: "विचार",
         ur_name: "آراء",
-        path: "/voices/opinion"
+        path: "/voices/opinions"
     }
 ];
 

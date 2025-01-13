@@ -18,8 +18,8 @@ const page = () => {
 
     const router = useRouter()
 
-    const param = useParams()
-    const tag = param.tagName as string
+    // const param = useParams()
+    const tag = "Videos"
 
     const fetchNewsByLanguage = {
         en: getAllEnglishNewsByTag,

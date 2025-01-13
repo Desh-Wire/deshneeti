@@ -7,7 +7,7 @@ import ViewMore from './ViewMore'
 
 const Analysis = ({ className, router, news }: { className?: string, router: AppRouterInstance, news: News[] }) => {
 
-    const anaysis = news.filter(item => item.tags.includes('analysis') || item.tags.includes('Analysis'));
+    const anaysis = news.filter(item => item!.tags!.includes('analysis') || item!.tags!.includes('Analysis'));
     const horizontalNews = anaysis.slice(0, Math.min(2, anaysis.length));
     const verticalNews = anaysis.slice(2, Math.min(5, anaysis.length));
 
@@ -28,20 +28,20 @@ const Analysis = ({ className, router, news }: { className?: string, router: App
             {anaysis.length === 0 ? <div className="flex items-center justify-center h-96 text-white text-xl font-semibold">
                 No News Found
             </div> :
-                <div className='flex flex-row gap-4'>
+                <div className='flex md:flex-row flex-col gap-4'>
                 {/* horizontal */}
-                <div className='flex flex-row w-[70%] gap-4 items-stretch justify-items-stretch'>
+                <div className='flex md:flex-row flex-col md:w-[70%] gap-4 items-stretch justify-items-stretch'>
                     {
                         horizontalNews.map((item, index) => (
-                            <HomePageItemSmall2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
+                            <HomePageItemSmall2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                         ))
                     }
                 </div>
                 {/* vertical */}
-                <div className='flex flex-col w-[30%] gap-4'>
+                <div className='flex flex-col md:w-[30%] gap-4'>
                     {
                         verticalNews.map((item, index) => (
-                            <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
+                            <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                         ))
                     }
                 </div>

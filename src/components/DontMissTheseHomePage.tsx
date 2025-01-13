@@ -19,7 +19,7 @@ const DontMissTheseHomePage = ({ className, router, news }: { className?: string
                 {
                     dontMiss.map((item, index) => (
                         <div key={index} className='flex flex-col gap-y-4'>
-                            <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
+                            <HomePageItemLong2 key={index} heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                             <Divider />
                         </div>
                     ))

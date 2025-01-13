@@ -4,6 +4,7 @@ import { db } from "@/db";
 
 export const getAllEnglishNewsByTag = async (tag: string) => {
     try {
+        console.log("Fetching news by tag: ", tag);
         const res = await db.newsItem.findMany({
             select: {
                 id: true,

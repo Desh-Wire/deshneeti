@@ -10,7 +10,7 @@ import VoiceBigItem from './VoiceBigItem'
 import { useLanguage } from '@/app/LanguageContext'
 import { getAllEnglishNewsByTag, getAllHindiNewsByTag, getAllUrduNewsByTag } from '@/app/TagActions'
 
-const VOICES = ['opinion','editors_choice','analysis']
+const VOICES = ['opinions','editors_choice','analysis']
 
 const page = () => {
 

@@ -91,7 +91,7 @@ const page = () => {
         <div>
             <MaxWidthWrapper className='flex md:flex-row flex-col mb-4'>
                 {/* big news div */}
-                <CategoryBigItem news={newsItem} router={router} className='md:w-[70%] w-full p-4 mr-4' />
+                <CategoryBigItem news={newsItem} router={router} className='md:w-[70%] w-full p-4 md:mr-4' />
                 <div className={cn('flex flex-col gap-y-4 md:w-[30%] w-full mt-4')}>
 
                     <p className="font-bold text-3xl">

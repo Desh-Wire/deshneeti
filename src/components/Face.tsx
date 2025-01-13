@@ -12,7 +12,7 @@ import { News } from '@/lib/utils';
 
 const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => {
 
-    const editorsPick = news.filter((item) => item.tags.includes('Editors Choice')).slice(0, Math.min(3, news.length));
+    const editorsPick = news.filter((item) => item!.tags!.includes('Editors Choice')).slice(0, Math.min(3, news.length));
     const center = news.slice(0, 1);
     const centerBelow = news.slice(1, 3);
     const justIn = news.slice(3,Math.min(11,news.length));
@@ -30,9 +30,9 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
     return (
         <>
             {/* Top level div */}
-            <div className='flex flex-row justify-between gap-x-4'>
+            <div className='flex md:flex-row justify-between md:gap-x-4 flex-col gap-y-4'>
                 {/* Editors Pick */}
-                <div className='w-[25%] flex flex-col justify-between'>
+                <div className='md:w-[25%] flex flex-col justify-between'>
                     <div className='flex flex-col gap-y-8'>
                         <p className='font-extrabold text-2xl capitalize'>
                             EDITOR'S CHOICE
@@ -49,7 +49,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                             {
                                 editorsPick.map((item, index) => (
                                     <div className='flex flex-col gap-y-2' key={index}>
-                                        <HomePageItemSmall heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
+                                        <HomePageItemSmall heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} />
                                         <Divider />
                                     </div>
                                 ))
@@ -57,10 +57,10 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                         </div>}
                 </div>
                 {/* Center div */}
-                <div className='flex flex-col h-full items-center w-[60%]'>
+                <div className='flex flex-col h-full items-center md:w-[60%]'>
                     {center.length === 0 ? <div className='flex items-center justify-center h-96'> No News found </div> :
                         <div className='w-full h-[60%]'>
-                            <HomePageItemBig heading={center[0].headingEng ?? center[0].headingHin ?? center[0].headingUrd ?? ""} category={center[0].category.name} readtime={center[0].readTime.toString()} author={center[0].author.name} image={center[0].pictureUrl ?? ""} router={router} uuid={center[0].id} />
+                            <HomePageItemBig heading={center[0].headingEng ?? center[0].headingHin ?? center[0].headingUrd ?? ""} category={center[0]!.category!.name} readtime={center[0].readTime.toString()} author={center[0]!.author!.name} image={center[0].pictureUrl ?? ""} router={router} uuid={center[0].id} />
                         </div>}
                     <Divider />
                     {centerBelow.length === 0 ? <div className='flex items-center justify-center h-96'> No News found </div> :
@@ -68,7 +68,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                             {
                                 centerBelow.map((item, index) => (
                                     <div className='flex flex-col gap-y-2' key={index}>
-                                        <HomePageItemLong heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item.category.name} readtime={item.readTime.toString()} author={item.author.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} tagline={item.taglineEng ?? item.taglineHin ?? item.taglineUrd ?? ""} />
+                                        <HomePageItemLong heading={item.headingEng ?? item.headingHin ?? item.headingUrd ?? ""} category={item!.category!.name} readtime={item.readTime.toString()} author={item!.author!.name} image={item.pictureUrl ?? ""} router={router} uuid={item.id} tagline={item.taglineEng ?? item.taglineHin ?? item.taglineUrd ?? ""} />
                                         <Divider />
                                     </div>
                                 ))
@@ -76,7 +76,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                         </div>}
                 </div>
                 {/* Just in */}
-                <div className='flex flex-col items-center gap-y-2 w-[20%]'>
+                <div className='flex flex-col items-center gap-y-2 md:w-[20%]'>
                     <div className='flex flex-row items-center gap-x-2 w-full'>
                         <Radio className='text-lg text-red-600' />
                         <p className='font-extrabold text-2xl capitalize'>
@@ -88,7 +88,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
                             {
                                 justIn.map((item, index) => (
                                     <div key={index} className='flex flex-col gap-y-2'>
-                                        <JustInItem key={index} category={item.category.name} title={item.headingEng ?? item.headingUrd ?? item.headingHin ?? ""} router={router} uuid={item.id} />
+                                        <JustInItem key={index} category={item!.category!.name} title={item.headingEng ?? item.headingUrd ?? item.headingHin ?? ""} router={router} uuid={item.id} />
                                         <Divider />
                                     </div>
                                 ))

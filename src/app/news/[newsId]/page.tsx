@@ -106,7 +106,7 @@ const page = () => {
     const content = parseContent(news[0].contentEng ?? news[0].contentHin ?? news[0].contentUrd ?? "") || EditorState.createEmpty();
 
     return (
-        <div className='w-[70%] flex flex-col gap-y-4'>
+        <div className='md:w-[70%] flex flex-col gap-y-4'>
 
             {/* Category */}
             <div>

@@ -15,7 +15,7 @@ const VideoBigItem = ({ news, router, className }: { news: News, router: AppRout
     }
 
     //add 3 hash tags to the news
-    news.tags = ['tag-1', 'tag-2', 'tag-3']
+    // news.tags = ['tag-1', 'tag-2', 'tag-3']
 
     return (
         <div className={cn(className, 'flex flex-col gap-y-4')}>
@@ -45,7 +45,7 @@ const VideoBigItem = ({ news, router, className }: { news: News, router: AppRout
                     {/* map of tags */}
                     <div className='flex flex-row flex-wrap gap-y-4 gap-x-4'>
                         {
-                            news.tags.map((tag, index) => (
+                            news!.tags!.map((tag, index) => (
                                 <div key={index} className='group border border-red-700 p-1 hover:bg-red-700 transition ease-in hover:cursor-pointer' onClick={() => handleTagClick(tag)}>
                                     <p className='text-red-700 uppercase group-hover:text-white'>
                                         {tag}
