@@ -27,12 +27,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add the AdSense script here */}
+        {/* Favicon */}
+        <link rel="icon" href="/img/logo.png" type="image/x-icon" />
+        {/* Add Google AdSense script */}
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653792412029642"
-          strategy="afterInteractive" // Load script after the page is interactive
+          strategy="afterInteractive"
           crossOrigin="anonymous"
         />
+
+        {/* Add Google Analytics script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-HCS8DFP1R0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HCS8DFP1R0');
+          `}
+        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F2EEE3] font-mono`}
