@@ -140,12 +140,18 @@ const page = () => {
                         </div>
                     </div>
                     {/* Socials */}
-                    <div className='flex flex-row items-center justify-between gap-x-2'>
-                        <Twitter size={20} className='hover:text-red-600 cursor-pointer' />
-                        <Facebook size={20} className='hover:text-red-600 cursor-pointer' />
-                        <Instagram size={20} className='hover:text-red-600 cursor-pointer' />
-                        <Linkedin size={20} className='hover:text-red-600 cursor-pointer' />
+                    <div className="flex flex-row items-center justify-between gap-x-2">
+                        <a href="https://x.com/deshkineeti?lang=en" target="_blank" rel="noopener noreferrer">
+                            <Twitter size={20} className="hover:text-red-600 cursor-pointer" />
+                        </a>
+                        <a href="https://www.facebook.com/deshneeti/" target="_blank" rel="noopener noreferrer">
+                            <Facebook size={20} className="hover:text-red-600 cursor-pointer" />
+                        </a>
+                        <a href="https://www.instagram.com/desh.neeti/" target="_blank" rel="noopener noreferrer">
+                            <Instagram size={20} className="hover:text-red-600 cursor-pointer" />
+                        </a>
                     </div>
+
                 </div>
             </div>
 
