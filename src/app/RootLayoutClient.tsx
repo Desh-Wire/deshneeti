@@ -27,11 +27,8 @@ export default function RootLayoutClient({
     <html lang="en">
       <head>
         <link rel="icon" href="/img/logo.png" type="image/x-icon" />
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653792412029642"
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653792412029642"
+          crossOrigin="anonymous"></script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-HCS8DFP1R0"
           strategy="afterInteractive"
