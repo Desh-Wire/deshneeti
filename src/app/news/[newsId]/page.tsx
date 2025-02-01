@@ -1,10 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { EXAMPLES } from '@/lib/example'
 import { useParams, useRouter } from 'next/navigation'
-import { format, parse } from 'date-fns';
-import { Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Twitter, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
 import { News } from '@/lib/utils';
 import { getEnglishNewsById, getEnglishNewsLatest, getHindiNewsById, getHindiNewsLatest, getUrduNewsById, getUrduNewsLatest } from './actions';
@@ -178,6 +176,24 @@ const page = () => {
                         />
                     </div>
                 </div>
+                {news[0].youtube && (
+                    <div className=" border-t pt-8">
+                        <div className="flex items-center gap-3 group cursor-pointer">
+                            <Youtube
+                                size={24}
+                                className="text-red-600"
+                            />
+                            <a
+                                href={news[0].youtube}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium text-gray-700 hover:text-red-600 transition-colors"
+                            >
+                                Watch the video on YouTube
+                            </a>
+                        </div>
+                    </div>
+                )}
             </div>
 
         </div>

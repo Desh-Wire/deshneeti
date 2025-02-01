@@ -16,7 +16,8 @@ export const getEnglishNewsById = async (id: string) => {
                 createdAt: true,
                 pictureUrl: true,
                 readTime: true,
-                views: true
+                views: true,
+                youtube: true
             },
             where: {
                 id: id
@@ -71,7 +72,8 @@ export const getHindiNewsById = async (id: string) => {
                 createdAt: true,
                 pictureUrl: true,
                 readTime: true,
-                views: true
+                views: true,
+                youtube: true
             },
             where: {
                 id: id
@@ -125,7 +127,8 @@ export const getUrduNewsById = async (id: string) => {
                 createdAt: true,
                 pictureUrl: true,
                 readTime: true,
-                views: true
+                views: true,
+                youtube: true
             },
             where: {
                 id: id

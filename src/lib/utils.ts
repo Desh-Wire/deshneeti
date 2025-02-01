@@ -33,4 +33,5 @@ export interface News {
     id: string;
     name: string;
   };
+  youtube?: string;
 }
