@@ -15,7 +15,7 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
     const editorsPick = news.filter((item) => item!.tags!.includes('Editors Choice')).slice(0, Math.min(3, news.length));
     const center = news.slice(0, 1);
     const centerBelow = news.slice(1, 3);
-    const justIn = news.slice(3,Math.min(11,news.length));
+    const justIn = news.slice(3, Math.min(11, news.length));
 
     if (news === undefined) {
         return (
@@ -30,6 +30,14 @@ const Face = ({ router, news }: { router: AppRouterInstance, news: News[] }) => 
     return (
         <>
             {/* Top level div */}
+            <div className="w-full mb-2">
+                <div className="bg-red-50 border-red-600 p-4 flex items-center justify-center">
+                    <div className="flex items-center gap-3">
+                        <div className="h-2 w-2 bg-red-600 rounded-full animate-pulse" />
+                        <span className="text-red-600 font-semibold uppercase tracking-widest text-4xl animate-pulse">Breaking News</span>
+                    </div>
+                </div>
+            </div>
             <div className='flex md:flex-row justify-between md:gap-x-4 flex-col gap-y-4'>
                 {/* Editors Pick */}
                 <div className='md:w-[25%] flex flex-col justify-between'>

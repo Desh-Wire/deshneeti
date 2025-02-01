@@ -115,7 +115,7 @@ const page = () => {
 
             {/* Heading/author/info */}
             <div>
-                <p className='font-bold text-4xl leading-relaxed'>
+                <p className='font-bold text-4xl leading-snug'>
                     {news[0].headingEng ?? news[0].headingHin ?? news[0].headingUrd ?? ""}
                 </p>
                 <div className='flex flex-row gap-x-4'>
