@@ -17,6 +17,10 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const reithSerif = localFont({
+  src: './fonts/BBC Reith Serif.woff2',
+  variable: '--font-reith-serif',
+});
 
 export default function RootLayoutClient({
   children,
@@ -42,9 +46,7 @@ export default function RootLayoutClient({
           `}
         </Script>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F2EEE3] font-mono`}
-      >
+      <body className={`${reithSerif.variable} ${geistMono.variable} antialiased bg-[#F2EEE3] font-serif`}>
         <LanguageProvider>
           <div>
             <div className="h-6 w-full" />
